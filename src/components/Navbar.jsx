@@ -18,9 +18,9 @@ const Navbar = () => {
  
     //nav items
     const navItems = [
-        {path: '/home', Link: 'Home'},
+        {path: '/', Link: 'Home'},
         {path: '/services', Link: 'Services'},
-        {path: '/About', Link: 'About'},
+        {path: '/about', Link: 'About'},
         {path: '/contact', Link: 'Contact'},
         {path: '/blogs', Link: 'Blogs'}
     ]
@@ -30,8 +30,8 @@ const Navbar = () => {
         <nav className="w-[90%] mx-auto py-4 flex items-center justify-between">
             <a 
                 href="/"
-                className="font-bold text-4xl bg-gradient-to-r from-orange-300 to-red-700 bg-clip-text
-                text-transparent"
+                className="font-bold text-4xl bg-gradient-to-r from-orange-300 to-red-700 
+                            bg-clip-text text-transparent"
             >
                 Blogur
             </a>
@@ -39,11 +39,18 @@ const Navbar = () => {
             {/* nav items for larger screens */}
             <ul className="md:flex hidden text-lg gap-12">
                 {navItems.map(({path, Link}) => (
-                    <li key={path}>
+                    <li key={path} className="text-white/75 hover:text-white transition-all delay-200 
+                                                ease-in-out"
+                    >
                         <NavLink 
                             to={path}
-                            className="text-white/75 hover:text-white transition-all delay-200 ease-in-out
-                            "
+                            className={({isActive, isPending}) => (
+                                isActive
+                                ? "active"
+                                : isPending
+                                ? "pending"
+                                : ""
+                            )}
                         >
                             {Link}
                         </NavLink>
