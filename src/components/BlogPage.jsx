@@ -2,6 +2,7 @@
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
 import Category from "./Category";
+import Sidebar from "./SideBar";
 
 
 const BlogPage = () => {
@@ -56,15 +57,18 @@ const BlogPage = () => {
                     activeCategory={activeCategory}
                 />
             </div>
-                {/* blog cards section */}
-            <div className="max-w-7xl mx-auto">
-
+               
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+                 {/* blog cards section */}
                 <BlogCards 
                     blogs={blogs}
                     currentPage={currentPage}
                     selectedCategory={selectedCategory}
                     pageSize={pageSize}
                 />
+                {/* sidebar component */}
+
+                <Sidebar />
                   
             </div>
                 {/* pagination section */}

@@ -3,13 +3,13 @@ import { FaArrowRight } from "react-icons/fa";
 
 const Banner = () => {
   return (
-    <div className="px-4 py-16 bg-black mx-auto">
+    <div className="px-4 py-22 bg-black mx-auto">
 
       <div className="text-white text-center">
         <h1 className="text-3xl md:text-4xl leading-snug font-bold mb-1">
           Empower Your Voice with Seamless Publishing
         </h1>
-        <p className="text-white/75">  
+        <p className="text-white/75 text-sm">  
           Blogr makes it easy to write, edit, and share your thoughts with a beautifully designed, 
           distraction-free experience.  
         </p>
