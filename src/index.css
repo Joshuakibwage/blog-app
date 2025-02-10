@@ -43,3 +43,7 @@ p {
     border-radius: 4px;
     border: white;
 }
+
+.active-button {
+    color: #fc3c1a;
+}

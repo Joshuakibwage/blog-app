@@ -1,6 +1,8 @@
  import { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
+import Category from "./Category";
+
 
 const BlogPage = () => {
 
@@ -47,8 +49,12 @@ const BlogPage = () => {
 
         <div>
                 {/* category section */}
-            <div>
-                    page Category
+            <div className="max-w-7xl mx-auto">
+                <Category 
+                    onSelectCategory={handleCategoryChange}
+                    selectedCategory={selectedCategory}
+                    activeCategory={activeCategory}
+                />
             </div>
                 {/* blog cards section */}
             <div className="max-w-7xl mx-auto">
@@ -62,7 +68,7 @@ const BlogPage = () => {
                   
             </div>
                 {/* pagination section */}
-            <div className="mb-4">
+            <div className="mb-4 mt-6">
                     <Pagination
                         onPageChange={handlePageChange}
                         currentPage={currentPage}
