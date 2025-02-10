@@ -1,14 +1,31 @@
- import { useState } from "react";
- import blogData from "../utils/data.json";
-import BlogCard from "./BlogCard";
+ import { useEffect, useState } from "react";
+import BlogCards from "./BlogCards";
 
 const BlogPage = () => {
 
-//   const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 12 ;    //blogs per page
 
     const [selectedCategory, setSelectedCategory] = useState(null);
+
+    useEffect(() => {
+        async function fetchBlogs() {
+            let url = `http://localhost:5000/blogs?page=${currentPage}&limit=${pageSize}`;
+
+            // filter by category
+            if(selectedCategory) {
+                url += `&category=${selectedCategory}`;
+            }
+
+            const response = await fetch(url);
+            const data = await response.json();
+            setBlogs(data);
+            
+        }
+
+        fetchBlogs();
+    }, [currentPage, pageSize, selectedCategory])
   return (
     <div className="w-full">
 
@@ -18,17 +35,11 @@ const BlogPage = () => {
                     page Category
             </div>
                 {/* blog cards section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto ">
+            <div className="max-w-7xl mx-auto">
 
-            {blogData.map((data, id) => (    
-
-                <BlogCard
-                    key={id}
-                    {...data}
-                    // blogs={blogs}
-                
+                <BlogCards 
+                    blogs={blogs}
                 />
-            ))}
                   
             </div>
                 {/* pagination section */}
