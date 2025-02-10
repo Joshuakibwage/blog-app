@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
-const BlogCard = ({ blogs }) => {
+const BlogCard = ({ blogs, currentPage, selectedCategory, pageSize}) => {
 
-    const filteredBlogs = blogs;
-    console.log(filteredBlogs)
+    const filteredBlogs = blogs
+    .filter((blogs) => !selectedCategory || blogs.category === selectedCategory)
+    .slice((currentPage - 1) *pageSize, currentPage * pageSize)
+    // console.log(filteredBlogs)
   return (
     <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {   filteredBlogs.map((blog) => (
@@ -30,7 +32,7 @@ const BlogCard = ({ blogs }) => {
                 </div>
             </Link>
         
-        ))};
+        ))}
     </div>
   )
 }

@@ -15,7 +15,9 @@ const Banner = () => {
         </p>
 
         <div className="flex justify-center mt-4">
-          <Link to='/about' className="flex items-center gap-1 hover:text-orange-500">
+          <Link to='/about' className="flex items-center gap-1 hover:text-orange-500 hover:-translate-y-1
+            transition-all ease-in-out delay-150"
+          >
             <p>Learn More</p>
             <FaArrowRight />
           </Link>

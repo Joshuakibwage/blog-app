@@ -1,13 +1,15 @@
  import { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
+import Pagination from "./Pagination";
 
 const BlogPage = () => {
 
   const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 12 ;    //blogs per page
-
+    
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [activeCategory, setActiveCategory] = useState(null);
 
     useEffect(() => {
         async function fetchBlogs() {
@@ -25,7 +27,21 @@ const BlogPage = () => {
         }
 
         fetchBlogs();
-    }, [currentPage, pageSize, selectedCategory])
+    }, [currentPage, pageSize, selectedCategory]);
+
+    //page changing button
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+
+    const handleCategoryChange = (category) => {
+        setSelectedCategory(category)
+        setCurrentPage(1)
+        setActiveCategory(category)
+
+    }
+
+
   return (
     <div className="w-full">
 
@@ -39,12 +55,20 @@ const BlogPage = () => {
 
                 <BlogCards 
                     blogs={blogs}
+                    currentPage={currentPage}
+                    selectedCategory={selectedCategory}
+                    pageSize={pageSize}
                 />
                   
             </div>
                 {/* pagination section */}
-            <div>
-                    pagination
+            <div className="mb-4">
+                    <Pagination
+                        onPageChange={handlePageChange}
+                        currentPage={currentPage}
+                        blogs={blogs}
+                        pageSize={pageSize}
+                    />
             </div>
             </div>
     
