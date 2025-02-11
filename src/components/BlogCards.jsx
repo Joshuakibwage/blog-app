@@ -11,7 +11,7 @@ const BlogCard = ({ blogs, currentPage, selectedCategory, pageSize}) => {
     <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {   filteredBlogs.map((blog) => (
             
-            <Link key={blog.id} className="group">
+            <Link to={`/blogs/${blog.id}`} key={blog.id} className="group">
                 <div className="p-5 shadow-lg rounded cursor-pointer group-hover:-translate-y-1 transition-all 
                 delay-200 ease-in-out"
                 >

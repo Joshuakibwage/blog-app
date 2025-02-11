@@ -235,7 +235,8 @@ const Footer = () => {
                     </div>
                         
                 </div>
-                <p className="capitalized text-center py-4 text-gray-300">&copy;2025 | All rights reserverd</p>
+                <div className="border border-b-neutral-500 my-8"/>
+                <p className="capitalized text-center pt-4 text-gray-300">&copy;2025 | All rights reserverd</p>
         </div>
     </footer>
   )
