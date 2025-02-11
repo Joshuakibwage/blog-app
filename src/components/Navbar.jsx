@@ -6,11 +6,14 @@ import Button from "./Button";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import Modal from "./Modal";
  
 
 const Navbar = () => {
 
     const [nav, setNav] = useState(false);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleNav = () => {
         setNav(!nav);
@@ -25,6 +28,15 @@ const Navbar = () => {
         {path: '/blogs', Link: 'Blogs'}
     ]
 
+    // modal details
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+    
   return (
     <header className="bg-[#030014] w-full">
         <nav className="w-[90%] mx-auto py-4 flex items-center justify-between">
@@ -79,6 +91,7 @@ const Navbar = () => {
                 </a>
 
                 <Button 
+                    onClick={openModal}
                     label="Log In"
                     className="bg-orange-400 px-6 py-2 rounded-md font-semibold text-white 
                     hover:bg-white hover:-translate-y-1 cursor-pointer transition-all ease-in-out delay-200
@@ -86,6 +99,12 @@ const Navbar = () => {
                 />
             </div>
 
+            {/* this is the modal component */}
+            <Modal 
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            />
+                    
             {/* mobile menu icons */}
             <div className="text-white md:hidden flex">
                 <button onClick={toggleNav} className="cursor-pointer">
@@ -100,6 +119,9 @@ const Navbar = () => {
                 </button>
             </div>
         </nav>
+
+
+        {/*  */}
 
         {/* mobile menu nav */}
         <div className="md:hidden block">
